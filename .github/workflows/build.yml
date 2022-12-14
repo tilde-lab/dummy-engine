@@ -28,7 +28,7 @@ jobs:
 
       - name: Build
         run: |
-          make dummyengine
+          CXX_COMPILER=g++-9 make dummyengine
           make dummyengine.exe
 
       - name: Upload Artifact
