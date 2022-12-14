@@ -14,11 +14,17 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v1
+        with:
+          version: 7
+          platform: x64
 
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
@@ -28,7 +34,7 @@ jobs:
 
       - name: Build
         run: |
-          make dummyengine
+          make dummyengine CXX_COMPILER=g++-7
           make dummyengine.exe
 
       - name: Upload Artifact
